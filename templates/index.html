@@ -23,12 +23,22 @@
                 <div class="inputContainer half last">
                     <i class="fa fa-caret-down selectArrow"></i>
                     <select id="category" class="taskCategory" name="category_select">
-                    <option class="disabled" value="">Most Urgent</option>
+                    <option class="disabled" value="">Choose one</option>
                     {% for category in categories %}
                         <option class="" value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
                     {% endfor %}
                     </select>
                     <label for="category">Category</label>
+                </div>
+                <div class="inputContainer half last">
+                    <i class="fa fa-caret-down selectArrow"></i>
+                    <select id="priority" class="taskCategory" name="priority_select">
+                    <option class="disabled" value="">How Important</option>
+                    {% for priority in priorities %}
+                        <option class="" value="{{ priority.name }}" name="{{ priority.name }}">{{ priority.name }}</option>
+                    {% endfor %}
+                    </select>
+                    <label for="priority">Priority</label>
                 </div>
                 <div class="inputContainer half last right">
                     <input type="date" id="dueDate" class="taskDate" name="date" required>
@@ -36,14 +46,18 @@
                 </div>
                 <div class="row">
                     <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add task</button>
-                    <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Delete Tasks</button>
+                    <button class="taskComplete" name="taskComplete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-check icon"></i>Complete Task</button>
+                    <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-minus icon"></i>Delete Task</button>
+                    <button class="deleteAll" name="deleteAll" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Delete All</button>
                 </div>
             <ul class="taskList">
             {% for todo in todos %} <!-- django template lang - for loop -->
+
                 <li class="taskItem">
                     <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}" value="{{ todo.id }}">
-                    <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
-                    <span class="category-{{ todo.category }}">{{ todo.category }}</span>
+                    <label for="{{ todo.id }}"><span class="complete- status-{{todo.status}}">{{ todo.title }}</span></label>
+                    <span class="priority-{{ todo.priority }}">{{ todo.priority }} Priority</span>
+                    <span class="category-{{ todo.category }}">{{ todo.category }}</span>                    
                     <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.created }} - {{ todo.due_date }}</strong>
                 </li>
             {% endfor %}

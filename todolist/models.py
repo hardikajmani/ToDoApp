@@ -9,12 +9,21 @@ class Category(models.Model): # The Category table name that inherits models.Mod
         verbose_name_plural = ("Categories")
     def __str__(self):
         return self.name #name to be shown when called
+class Priority(models.Model): # The Category table name that inherits models.Model
+    name = models.CharField(max_length=100) #Like a varchar
+    class Meta:
+        verbose_name = ("Priority")
+        verbose_name_plural = ("Priorities")
+    def __str__(self):
+        return self.name #name to be shown when called
 class TodoList(models.Model): #Todolist able name that inherits models.Model
-    title    = models.CharField(max_length=250) # a varchar
+    title    = models.CharField(max_length=100) # a varchar
     content  = models.TextField(blank=True) # a text field 
     created  = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) # a date
     due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) # a date
-    category = models.ForeignKey(Category, default="general", on_delete = models.CASCADE) # a foreignkey
+    category = models.ForeignKey(Category, default = "general", on_delete = models.CASCADE) # a foreignkey
+    priority = models.TextField(Priority, default = "low") # priority for the task
+    status   = models.TextField(default = "Incomplete")
     class Meta:
         ordering = ["-created"] #ordering by the created field
     def __str__(self):

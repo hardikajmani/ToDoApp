@@ -161,13 +161,29 @@ button {
 .taskAdd:hover {
     background: #303030;
 }
+
 .taskDelete {
-    background: #e74c3c;
+    background: #f88922;
     padding-left: 30px;
 }
 .taskDelete:hover {
-    background: #c0392b;
+    background: #f5a207;
 }
+.deleteAll {
+    background: #e74c3c;
+    padding-left: 30px;
+}
+.deleteAll:hover {
+    background: #ce3322;
+}
+.taskComplete {
+    background: #69c829;
+    padding-left: 30px;
+}
+.taskComplete:hover {
+    background: #5ac712;
+}
+
 /* task styles */
 .taskList {
     list-style: none;
@@ -236,6 +252,45 @@ button {
 .category-Other {
     background: #d35400;
 }
+[class*='priority-'] {
+    display: inline-block;
+    font-size: 10px;
+    background: #444;
+    vertical-align: middle;
+    color: #fff;
+    padding: 10px;
+    width: 75px;
+    text-align: center;
+    border-radius: 2px;
+    float: right;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+.priority- {
+    background: transparent;
+}
+
+.priority-High {
+    background: #ff0000;
+}
+
+.priority-Medium {
+    background: #e67c04;
+}
+
+.priority-Low {
+    background: #00ff22;
+}
+
+.status-Complete {
+    background: #c8f1a1;
+    text-decoration: line-through;
+}
+
+.status-Incomplete {
+}
+
 footer {
     text-align: center;
     font-size: 11px;
