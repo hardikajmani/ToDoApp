@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import TodoList, Category, Priority
-from django.shortcuts import get_object_or_404
+
 from todolist.forms import SignUpForm, ExportForm
 
 
@@ -35,7 +35,7 @@ def index(request): #the index view
                 message = "Please Choose atleast one task!"
             else:    
                 for todo_id in checkedlist:
-                    todo = get_object_or_404(TodoList ,id=int(todo_id)) #getting todo id
+                    todo = TodoList.objects.get(id=int(todo_id)) #getting todo id
                     todo.delete() #deleting todo
                 message  = "Updated!"
             return redirect("/",{"message":message})
@@ -46,7 +46,7 @@ def index(request): #the index view
                 message = "Please Choose atleast one task!"
             else:
                 for todo_id in checkedlist:
-                    todo = get_object_or_404(TodoList ,id=int(todo_id)) #getting todo id
+                    todo = TodoList.objects.get(id=int(todo_id)) #getting todo id
                     todo.status = "Complete" #finshing todo
                     todo.save()
                 message  = "Updated!"

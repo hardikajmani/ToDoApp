@@ -1,3 +1,6 @@
 1] https://medium.com/fbdevclagos/how-to-build-a-todo-app-with-django-17afdc4a8f8c
 2] https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 3] https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/
+4] https://simpleisbetterthancomplex.com/tutorial/2016/09/19/how-to-create-password-reset-view.html
+5] https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
+6] https://docs.djangoproject.com/en/2.2/topics/email/
