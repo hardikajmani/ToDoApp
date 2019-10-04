@@ -45,12 +45,11 @@ h1 {
     margin: 0;
 }
 .tagline {
-    margin-top: -10px;
-    text-align: center;
+    margin-top: 5px;
+    text-align: auto;
     padding: 5px 20px;
     font-size: 11px;
     font-weight: 600;
-    text-transform: uppercase;
     color: #777; 
 }
 /* inputs */
@@ -155,22 +154,33 @@ button {
     font-size: 20px;
 }
 .taskAdd {
-    background: #444;
+    background: rgb(144, 137, 137);
     padding-left: 31px;
 }
 .taskAdd:hover {
     background: #303030;
 }
 
+.taskExport {
+    align: center;
+    background: transparent;
+    color:#303030;
+}
+.taskExport:hover {
+    align: center;
+    background: rgb(42, 61, 230);
+    color: #fff;
+}
+
 .taskDelete {
-    background: #f88922;
+    background: #f69a44;
     padding-left: 30px;
 }
 .taskDelete:hover {
     background: #f5a207;
 }
 .deleteAll {
-    background: #e74c3c;
+    background: #eb695a;
     padding-left: 30px;
 }
 .deleteAll:hover {

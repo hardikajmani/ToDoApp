@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+from django.urls import path, include
 from django.contrib import admin
-from todolist.views import index
+from todolist.views import index, signup, export
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^signup/$', signup, name='signup'),
+    url(r'^export/$', export, name='export'),
     url(r'^$', index, name="TodoList"),
 ]

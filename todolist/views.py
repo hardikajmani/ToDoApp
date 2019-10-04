@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.core.mail import send_mail
+from django.contrib.auth.forms import UserCreationForm
 from .models import TodoList, Category, Priority
+
+from todolist.forms import SignUpForm, ExportForm
 
 
 
@@ -15,7 +20,7 @@ def index(request): #the index view
             date = str(request.POST["date"]) #date
             category = request.POST["category_select"] #category
             priority = request.POST["priority_select"] #category
-            content = title + " -- " + date + " " + category + " priority@" + priority #content
+            content = title + " -- " + date + " " + category + " priority@" + priority + " " + "Status: \"" #content
             Todo = TodoList(title=title, content=content, due_date=date, category=Category.objects.get(name=category), priority=Priority.objects.get(name = priority), status = status)
             Todo.save() #saving the todo 
             return redirect("/") #reloading the page
@@ -37,3 +42,38 @@ def index(request): #the index view
                 todo.delete()
 
     return render(request, "index.html", {"todos": todos, "categories":categories, "priorities":priorities, "status":status})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
+def export(request):
+    flag = False
+    if request.method == 'POST':
+        form = ExportForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            message = form.cleaned_data.get('message')
+            todos = TodoList.objects.all()
+            for todo in todos:
+                task = todo.content + todo.status + "\""
+                message += ("<br>" + task)
+
+            send_mail('Exported ToDO Tasks', message, 'no_reply@todoapp.com', [email], html_message=message )
+            flag = True
+            return redirect('/', {'exportFlag':flag})
+    else:
+        form = ExportForm()
+    return render(request, 'export.html', {'form': form})
+

@@ -126,3 +126,16 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join('static')
 STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+#EMAIL_HOST = 'smtp.mailtrap.io'
+#EMAIL_HOST_USER = '5408f334332b45'
+#EMAIL_HOST_PASSWORD = '6af7a18a0ca26f'
+#EMAIL_PORT = '2525'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = '25'
